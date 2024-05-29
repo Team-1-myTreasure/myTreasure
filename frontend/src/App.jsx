@@ -1,20 +1,19 @@
-import { useState, useEffect } from "react";
-import "./App.css";
+import { useState, useEffect } from 'react';
+import './App.css';
+
+import { Host } from './components/Host';
+import { Gest } from './components/Gest';
 
 function App() {
-  const [host, setHost] = useState([]);
-
-  useEffect(() => {
-    fetch("/host")
-      .then((res) => res.json())
-      .then((data) => setHost(data));
-  }, []);
+  const [hostOrGest, setHostOrGest] = useState(true);
+  // const [host, setHost] = useState([]);
+  // useEffect(() => {
+  //   fetch('/host')
+  //     .then((res) => res.json())
+  //     .then((data) => setHost(data));
+  // }, []);
   // console.log(host);
-  return (
-    <div>
-      <p>{JSON.stringify(host[0])}</p>
-    </div>
-  );
+  return <div>{hostOrGest ? <Host /> : <Gest />}</div>;
 }
 
 export default App;
