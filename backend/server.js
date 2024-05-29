@@ -15,6 +15,11 @@ app.get("/host", async (req, res) => {
   res.send(host);
 });
 
+// app.get("/product", async (req, res) => {
+//   const host = await db("host").select("");
+//   res.send(host);
+// });
+
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
 });
