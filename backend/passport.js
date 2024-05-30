@@ -44,16 +44,16 @@ router.get("/failure", (req, res) => {
   res.send("Failure");
 });
 
-router.get("/success", (req, res) => {
+router.get("/api/success", (req, res) => {
   console.log(req.session);
   res.send("aiuo");
 });
 
 router.post(
-  "/",
+  "/api",
   passport.authenticate("local", {
     failureRedirect: "/failure",
-    successRedirect: "/success",
+    successRedirect: "/host/allproducts",
   })
 );
 

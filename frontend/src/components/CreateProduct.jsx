@@ -24,7 +24,7 @@ export const CreateProduct = () => {
       />
       <button
         onClick={async () => {
-          const res = await fetch("/product", {
+          const res = await fetch("/api/product", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
