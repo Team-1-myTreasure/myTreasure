@@ -8,7 +8,7 @@ exports.up = function (knex) {
     table.integer("product_id");
     table.foreign("product_id").references("product.product_id");
     table.string("player_name").notNullable();
-    table.timestamp("goal_time").notNullable();
+    table.integer("goal_time_unix");
     table.integer("progress_state").notNullable();
   });
 };

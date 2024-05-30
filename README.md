@@ -1,11 +1,20 @@
 # myTreasure
 
-test
-testtesttest
-#test
+# ローカルでのインストール手順
+ とりあえずの、参考に…
 
-bird-man!
+DB作成
+```
+psql
+CREATE DATABASE my_treasure
 
-### massa
+```
 
-### modify
+```
+cd frontend
+npm install
+cd ../backend
+npm install
+```
+
+
