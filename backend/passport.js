@@ -1,28 +1,27 @@
 const express = require("express");
-const app = express();
 const router = express.Router();
-const session = require("express-session");
 
+const knex = require("knex");
+const knexConfig = require("./knexfile");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const crypto = require('cry')
+
+const environment = process.env.DATABASE_URL ? "production" : "development";
+const db = knex(knexConfig[environment]);
+
 
 const User1 = {
   name: "Taro",
   password: "Taro123",
 };
 
+//入力されたパスワードとDBのパスワードを比較する
 passport.use(
-  new LocalStrategy((username, password, done) => {
-    if (username !== User1.name) {
-      // Error
-      return done(null, false);
-    } else if (password !== User1.password) {
-      // Error
-      return done(null, false);
-    } else {
-      // Success and return user information.
-      return done(null, { username: username, password: password });
-    }
+  new LocalStrategy(async (username, password, done) => {
+   const matchName = await db("host").select("name").where("name", "=", username);
+   
+
   })
 );
 
@@ -39,7 +38,7 @@ passport.deserializeUser((user, done) => {
 router.use(passport.initialize());
 router.use(passport.session());
 
-router.get("/failure", (req, res) => {
+router.get("/api/failure", (req, res) => {
   console.log(req.session);
   res.send("Failure");
 });
@@ -52,12 +51,12 @@ router.get("/api/success", (req, res) => {
 router.post(
   "/api",
   passport.authenticate("local", {
-    failureRedirect: "/failure",
+    failureRedirect: "/api/failure",
     successRedirect: "/host/allproducts",
   })
 );
 
-router.post("/logout", (req, res) => {
+router.post("/api/logout", (req, res) => {
   req.session.passport.user = undefined;
   res.redirect("/");
 });

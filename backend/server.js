@@ -9,7 +9,7 @@ const db = knex(knexConfig[environment]);
 const PORT = process.env.PORT || 8080;
 const app = express();
 
-app.use("/", express.static("../frontend/dist"));
+
 app.use(express.json());
 
 app.use("/", express.static("../frontend/dist"));
@@ -24,14 +24,14 @@ app.use(
 app.use("/", require("./passport.js"));
 //---------------------------------------------------------
 
-app.get("/host", async (req, res) => {
+app.get("/api/host", async (req, res) => {
   const host = await db("host").select("");
   res.send(host);
 });
 
 //---------------------------------------------------------
 
-app.get("/product", async (req, res) => {
+app.get("/api/product", async (req, res) => {
   const allProduct = await db.select("*").from("product");
   res.send(allProduct);
 });
@@ -46,7 +46,7 @@ app.post("/api/product", async (req, res) => {
 
 //---------------------------------------------------------
 
-app.post("/problem", async (req, res) => {
+app.post("/api/problem", async (req, res) => {
   const newProblems = req.body;
   await db("problem").insert(newProblems);
   res.send("created");
