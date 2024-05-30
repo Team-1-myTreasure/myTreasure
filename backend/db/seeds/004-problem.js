@@ -11,8 +11,7 @@ exports.seed = async function (knex) {
       incorrect_answer: "松島",
       next_distination_hint: "泳ぐ所の近く",
       question_number: 1,
-      product_id: 1,
-      product_id: 1,
+      product_id: 1
     },
   ]);
 };
