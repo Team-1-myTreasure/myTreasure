@@ -38,7 +38,7 @@ app.get("/product", async (req, res) => {
 
 //---------------------------------------------------------
 
-app.post("/product", async (req, res) => {
+app.post("/api/product", async (req, res) => {
   const newProduct = req.body;
   const productId = await db("product").insert(newProduct, ["product_id"]);
   res.send(productId);
