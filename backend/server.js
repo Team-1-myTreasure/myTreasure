@@ -1,6 +1,7 @@
 const express = require("express");
 const knex = require("knex");
 const knexConfig = require("./knexfile");
+const session = require("express-session");
 //---------------------------------------------------------
 const environment = process.env.DATABASE_URL ? "production" : "development";
 const db = knex(knexConfig[environment]);
@@ -10,6 +11,17 @@ const app = express();
 
 app.use("/", express.static("../frontend/dist"));
 app.use(express.json());
+
+app.use("/", express.static("../frontend/dist"));
+app.use(express.urlencoded({ extended: false }));
+app.use(
+  session({
+    secret: "my treasrjure",
+    resave: true,
+    saveUninitialized: false,
+  })
+);
+app.use("/", require("./passport.js"));
 //---------------------------------------------------------
 
 app.get("/host", async (req, res) => {
