@@ -1,19 +1,23 @@
 import { useState, useEffect } from 'react';
 import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { Host } from './components/Host';
 import { Gest } from './components/Gest';
+import { AllProducts } from './components/AllProducts';
+import { CreateProduct } from './components/CreateProduct';
 
 function App() {
-  const [hostOrGest, setHostOrGest] = useState(true);
-  // const [host, setHost] = useState([]);
-  // useEffect(() => {
-  //   fetch('/host')
-  //     .then((res) => res.json())
-  //     .then((data) => setHost(data));
-  // }, []);
-  // console.log(host);
-  return <div>{hostOrGest ? <Host /> : <Gest />}</div>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="host">
+          <Route path="allproducts" element={<AllProducts />} />
+          <Route path="createproduct" element={<CreateProduct />} />
+        </Route>
+        <Route path="gest" element={<Gest />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
