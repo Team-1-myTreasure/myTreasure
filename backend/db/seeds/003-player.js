@@ -5,7 +5,7 @@ exports.seed = async function (knex) {
       player_id: 1,
       product_id: 1,
       player_name: "yudai",
-      goal_time: "2022-07-01 23:59:59",
+      goal_time_unix: 1717029192,
       progress_state: 1,
     },
   ]);
