@@ -7,19 +7,22 @@ import { Gest } from "./pages/Gest";
 import { AllProducts } from "./pages/AllProducts";
 import { CreateProduct } from "./pages/CreateProduct";
 import { ProblemDetail } from "./pages/ProblemDetail";
+import { SignupPage } from "./pages/SignupPage";
+import { SigninPage } from "./pages/SigninPage";
 
 function App() {
   return (
     <BrowserRouter>
       <MantineProvider>
-      <Routes>
-        <Route path="host">
-          <Route path="allproducts" element={<AllProducts />} />
-          <Route path="createproduct" element={<CreateProduct />} />
-          <Route path="problemdetail" element={<ProblemDetail />} />
-        </Route>
-        <Route path="gest" element={<Gest />} />
-      </Routes>
+        <Routes>
+          <Route path="host">
+            <Route path="signup" element={<SignupPage />} />
+            <Route path="signin" element={<SigninPage />} />
+            <Route path="allproducts" element={<AllProducts />} />
+            <Route path="createproduct" element={<CreateProduct />} />
+          </Route>
+          <Route path="gest" element={<Gest />} />
+        </Routes>
       </MantineProvider>
     </BrowserRouter>
   );
