@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import { Map } from "../components/Map";
 import { createContext } from "react";
+import { ProblemForm } from "../components/ProblemForm";
 
 export const locationContext = createContext();
 
@@ -16,20 +17,22 @@ export const ProblemDetail = () => {
       <div>{problems.length + 1}</div>
       <div>
         <p>目的地を選択</p>
-        <div>
-          <locationContext.Provider value={[latlng, setLatlng]}>
-            <Map />
-          </locationContext.Provider>
-          {console.log({ latlng })}
-        </div>
+        <Map />
       </div>
-      <form
+      <ProblemForm onSubmit={(value) => console.log(value)} />
+      {/* <form
         onSubmit={(e) => {
           e.preventDefault();
           const hint = e.target["hint"].value;
           const question = e.target["question"].value;
           const correct = e.target["correct"].value;
           const incorrect = e.target["incorrect"].value;
+          console.log(
+            "distination_latitude : ",
+            latlng[0],
+            ", distination_longtitude : ",
+            latlng[1]
+          );
           setProblems([
             ...problems,
             {
@@ -70,7 +73,7 @@ export const ProblemDetail = () => {
         }}
       >
         問題設定を終了
-      </button>
+      </button> */}
       <div>{JSON.stringify(problems)}</div>
     </>
   );
