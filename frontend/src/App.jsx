@@ -6,6 +6,7 @@ import { Gest } from "./components/Gest";
 import { AllProducts } from "./components/AllProducts";
 import { CreateProduct } from "./components/CreateProduct";
 import { ProblemDetail } from "./components/ProblemDetail";
+import { Host } from "./components/Host";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="problemdetail" element={<ProblemDetail />} />
         </Route>
         <Route path="gest" element={<Gest />} />
+        <Route path="test" element={<Host />} />
       </Routes>
     </BrowserRouter>
   );
