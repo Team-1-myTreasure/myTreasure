@@ -169,16 +169,16 @@ router.post("/api/signup", function (req, res, next) {
 });
 
 //----------------------------------------------------
-router.get("/api/failure", (req, res) => {
-  console.log(req.session);
-  res.send("Failure");
-});
+// router.get("/api/failure", (req, res) => {
+//   console.log(req.session);
+//   res.send("Failure");
+// });
 //----------------------------------------------------
 
-router.get("/api/success", (req, res) => {
-  console.log(req.session);
-  res.send("aiuo");
-});
+// router.get("/api/success", (req, res) => {
+//   console.log(req.session);
+//   res.send("aiuo");
+// });
 //----------------------------------------------------
 
 module.exports = router;
