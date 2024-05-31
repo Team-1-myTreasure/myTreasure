@@ -6,7 +6,6 @@ import "leaflet/dist/leaflet.css";
 // 地図を表示させるコンテナの height が必要
 import "./map.css";
 import { LocationMarkers } from "./LocationMarkers";
-import { useEffect } from "react";
 
 // 取得に成功した場合の処理
 

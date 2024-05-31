@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useState } from "react";
-import { Map } from "./Map";
+import { Map } from "../components/Map";
 import { createContext } from "react";
 
 export const locationContext = createContext();
