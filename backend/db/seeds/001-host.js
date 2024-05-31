@@ -1,5 +1,5 @@
 exports.seed = async function (knex) {
-  await knex("host").del();
+  await knex.raw("TRUNCATE TABLE host CASCADE");
   await knex("host").insert([
     {
       id: 1,
