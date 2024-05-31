@@ -50,7 +50,9 @@ export const ProblemForm = (props) => {
       </Stack>
 
       <Group justify="flex-end" mt="md">
-        <Button type="submit">Submit</Button>
+        <Button type="submit" fullWidth variant="outline" color="indigo">
+          問題設定を終了
+        </Button>
       </Group>
     </form>
   );

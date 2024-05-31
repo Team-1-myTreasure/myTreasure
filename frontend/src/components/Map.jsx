@@ -1,30 +1,29 @@
+/* eslint-disable no-unused-vars */
 import { latLng } from "leaflet";
-import { MapContainer, TileLayer, useMapEvents } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  useMapEvents,
+  Popup,
+  Marker,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./map.css";
 import { useState } from "react";
 
-function LocationMarker() {
+const LocationMarker = ({ onChangeMarker }) => {
   const [position, setPosition] = useState(null);
-  const map = useMapEvents({
-    click() {
-      map.locate();
-    },
-    locationfound(e) {
-      setPosition(e.latlng);
-      map.flyTo(e.latlng, map.getZoom());
+  useMapEvents({
+    click: (location) => {
+      setPosition([location.latlng.lat, location.latlng.lng]);
+      onChangeMarker([location.latlng.lat, location.latlng.lng]);
     },
   });
 
-  return position === null ? null : (
-    <Marker position={position}>
-      <Popup>You are here</Popup>
-    </Marker>
-  );
-}
+  return position === null ? null : <Marker position={position} />;
+};
 
-export const Map = () => {
-  //   const initialLocation = [];
+export const Map = ({ onChangeMarker }) => {
   const position = latLng([35.17021108824347, 136.88519672572562]);
   const zoom = 12;
 
@@ -36,7 +35,7 @@ export const Map = () => {
         maxZoom={30}
         minZoom={5}
       />
-      <LocationMarker />
+      <LocationMarker onChangeMarker={onChangeMarker} />
     </MapContainer>
   );
 };
