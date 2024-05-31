@@ -13,7 +13,7 @@ const app = express();
 
 app.use(express.json());
 
-app.use(express.static(__dirname + "../frontend/dist"));
+app.use(express.static(path.join(__dirname, "../frontend", "dist")));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(
@@ -55,7 +55,6 @@ app.post("/problem", async (req, res) => {
 });
 
 //---------------------------------------------------------
-
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
 });
