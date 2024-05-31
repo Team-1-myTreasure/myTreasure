@@ -32,7 +32,13 @@ export const ProblemDetail = () => {
             question_number: 1,
             product_id: productId,
           };
-          console.log(problem);
+          fetch("/api/problem", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(problem),
+          });
         }}
       />
     </>
