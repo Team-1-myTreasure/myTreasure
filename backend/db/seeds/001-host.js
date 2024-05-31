@@ -4,7 +4,8 @@ exports.seed = async function (knex) {
     {
       id: 1,
       name: "bird-man",
-      email: "birdbirdbird@gmali.com",
+      hashed_password: "",
+      salt: "",
     },
   ]);
 };
