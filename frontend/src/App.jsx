@@ -16,8 +16,8 @@ function App() {
       <MantineProvider>
         <Routes>
           <Route path="host">
-            <Route path="signup" element={<SignupPage />} />
-            <Route path="signin" element={<SigninPage />} />
+            <Route path="signupPage" element={<SignupPage />} />
+            <Route path="signinPage" element={<SigninPage />} />
             <Route path="allproducts" element={<AllProducts />} />
             <Route path="createproduct" element={<CreateProduct />} />
           </Route>

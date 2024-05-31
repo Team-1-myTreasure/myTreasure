@@ -24,7 +24,7 @@ export const Signin = () => {
     try {
       await axios.post("/signin", values);
       setIsPassIncorrect(false);
-      return navigate("/allproducts");
+      return navigate("/host/allproducts");
     } catch (error) {
       if (error.response.status === 401) {
         setIsPassIncorrect(true);
@@ -61,7 +61,7 @@ export const Signin = () => {
           <Button type="submit" fullWidth size="lg" color="indigo">
             ログイン
           </Button>
-          <Anchor href="/signupPage" underline="always">
+          <Anchor href="/host/signupPage" underline="always">
             アカウントの新規作成
           </Anchor>
         </Group>
