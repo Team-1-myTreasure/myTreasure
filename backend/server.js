@@ -2,6 +2,8 @@ const express = require("express");
 const knex = require("knex");
 const knexConfig = require("./knexfile");
 const session = require("express-session");
+const path = require("path");
+
 //---------------------------------------------------------
 const environment = process.env.DATABASE_URL ? "production" : "development";
 const db = knex(knexConfig[environment]);
@@ -9,10 +11,10 @@ const db = knex(knexConfig[environment]);
 const PORT = process.env.PORT || 8080;
 const app = express();
 
-app.use("/", express.static("../frontend/dist"));
 app.use(express.json());
 
-app.use("/", express.static("../frontend/dist"));
+app.use(express.static(__dirname + "../frontend/dist"));
+
 app.use(express.urlencoded({ extended: false }));
 app.use(
   session({
@@ -53,6 +55,10 @@ app.post("/problem", async (req, res) => {
 });
 
 //---------------------------------------------------------
+
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
+});
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
