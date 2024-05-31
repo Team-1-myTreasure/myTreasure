@@ -1,9 +1,10 @@
+/* eslint-disable no-unused-vars */
 // LocationMarkers.tsx
 import { useState } from "react";
-import { LatLng, latLng, icon } from "leaflet";
+import { latLng, icon } from "leaflet";
 import { Marker, Popup, useMapEvent } from "react-leaflet";
 import { useContext } from "react";
-import { locationContext } from "./ProblemDetail";
+import { locationContext } from "../pages/ProblemDetail";
 
 const ICON = icon({
   iconUrl: "/pin.jpeg",

@@ -1,11 +1,12 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { Gest } from "./components/Gest";
-import { AllProducts } from "./components/AllProducts";
-import { CreateProduct } from "./components/CreateProduct";
-import { ProblemDetail } from "./components/ProblemDetail";
+import { Gest } from "./pages/Gest";
+import { AllProducts } from "./pages/AllProducts";
+import { CreateProduct } from "./pages/CreateProduct";
+import { ProblemDetail } from "./pages/ProblemDetail";
 
 function App() {
   return (

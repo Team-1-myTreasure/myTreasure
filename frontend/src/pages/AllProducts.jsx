@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { SelectProducts } from './SelectProducts';
+import { useEffect } from "react";
+import { SelectProducts } from "../components/SelectProducts";
 
 export const AllProducts = () => {
   useEffect(() => {}, []);
