@@ -8,12 +8,10 @@ export const Signup = () => {
   const form = useForm({
     mode: "uncontrolled",
     initialValues: {
-      email: "",
       name: "",
       password: "",
     },
     validate: {
-      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Invalid email"),
       name: (value) => (value.length < 1 ? "名前を入力してください。" : null),
       password: (value) =>
         value.length < 6 ? "パスワードは6文字以上で入力してください。" : null,
@@ -21,7 +19,7 @@ export const Signup = () => {
   });
 
   const handleOnSubmit = async (values) => {
-    await axios.post("/signUp", values);
+    await axios.post("/signup", values);
     return navigate("/signin");
   };
 
@@ -29,8 +27,8 @@ export const Signup = () => {
     <form onSubmit={form.onSubmit(handleOnSubmit)}>
       <TextInput
         withAsterisk
-        label="Name"
-        placeholder="ネーム"
+        label="ユーザー名"
+        placeholder="ユーザー名を入力"
         key={form.key("name")}
         {...form.getInputProps("name")}
       />
@@ -38,7 +36,7 @@ export const Signup = () => {
       <TextInput
         withAsterisk
         label="Password"
-        placeholder="パスワード"
+        placeholder="パスワードを入力"
         key={form.key("password")}
         {...form.getInputProps("password")}
       />

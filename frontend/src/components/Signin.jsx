@@ -22,7 +22,7 @@ export const Signin = () => {
 
   const handleOnSubmit = async (values) => {
     try {
-      await axios.post("/signIn", values);
+      await axios.post("/signin", values);
       setIsPassIncorrect(false);
       return navigate("/allproducts");
     } catch (error) {
@@ -38,11 +38,11 @@ export const Signin = () => {
       <Stack gap="lg" p="20px">
         <TextInput
           withAsterisk
-          label="Email"
+          label="ユーザー名"
           size="md"
-          placeholder="your@email.com"
-          key={form.key("email")}
-          {...form.getInputProps("email")}
+          placeholder="ユーザー名を入力"
+          key={form.key("name")}
+          {...form.getInputProps("name")}
         />
 
         <TextInput
@@ -54,14 +54,14 @@ export const Signin = () => {
           {...form.getInputProps("password")}
         />
         <Text c="white" bg="red">
-          {isPassIncorrect && "メールアドレスもしくはパスワードが不一致"}
+          {isPassIncorrect && "ユーザー名もしくはパスワードが不一致"}
         </Text>
 
         <Group justify="flex-start" mt="md">
           <Button type="submit" fullWidth size="lg" color="indigo">
             ログイン
           </Button>
-          <Anchor href="/signup" underline="always">
+          <Anchor href="/signupPage" underline="always">
             アカウントの新規作成
           </Anchor>
         </Group>
