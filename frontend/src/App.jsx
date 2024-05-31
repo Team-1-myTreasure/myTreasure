@@ -7,6 +7,7 @@ import { Gest } from "./pages/Gest";
 import { AllProducts } from "./pages/AllProducts";
 import { CreateProduct } from "./pages/CreateProduct";
 import { ProblemDetail } from "./pages/ProblemDetail";
+import { ShareUrl } from "./pages/ShareUrl";
 import { SignupPage } from "./pages/SignupPage";
 import { SigninPage } from "./pages/SigninPage";
 
@@ -16,10 +17,12 @@ function App() {
       <MantineProvider>
         <Routes>
           <Route path="host">
-            <Route path="signupPage" element={<SignupPage />} />
-            <Route path="signinPage" element={<SigninPage />} />
             <Route path="allproducts" element={<AllProducts />} />
             <Route path="createproduct" element={<CreateProduct />} />
+            <Route path="problemdetail" element={<ProblemDetail />} />
+            <Route path="shareurl" element={<ShareUrl />} />
+            <Route path="signupPage" element={<SignupPage />} />
+            <Route path="signinPage" element={<SigninPage />} />
           </Route>
           <Route path="gest" element={<Gest />} />
         </Routes>

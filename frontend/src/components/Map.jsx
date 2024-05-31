@@ -1,34 +1,32 @@
-// Map.tsx
+/* eslint-disable no-unused-vars */
 import { latLng } from "leaflet";
-import { MapContainer, TileLayer } from "react-leaflet";
-// leaflet のスタイルがないと地図が崩れる
+import {
+  MapContainer,
+  TileLayer,
+  useMapEvents,
+  Popup,
+  Marker,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-// 地図を表示させるコンテナの height が必要
 import "./map.css";
-import { LocationMarkers } from "./LocationMarkers";
+import { useState } from "react";
 
-// 取得に成功した場合の処理
+const LocationMarker = ({ onChangeMarker }) => {
+  const [position, setPosition] = useState(null);
+  useMapEvents({
+    click: (location) => {
+      setPosition([location.latlng.lat, location.latlng.lng]);
+      onChangeMarker([location.latlng.lat, location.latlng.lng]);
+    },
+  });
 
-export const Map = () => {
-  //   const initialLocation = [];
+  return position === null ? null : <Marker position={position} />;
+};
+
+export const Map = ({ onChangeMarker }) => {
   const position = latLng([35.17021108824347, 136.88519672572562]);
   const zoom = 12;
 
-  //   useEffect(() => {
-  //     const successCallback = (position) => {
-  //       // 緯度を取得し画面に表示
-  //       initialLocation.push(position.coords.latitude);
-
-  //       // 経度を取得し画面に表示
-  //       initialLocation.push(position.coords.longitude);
-  //     };
-  //     navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-
-  //     // 取得に失敗した場合の処理
-  //     function errorCallback(error) {
-  //       alert("位置情報が取得できませんでした");
-  //     }
-  //   }, []);
   return (
     <MapContainer center={position} zoom={zoom}>
       <TileLayer
@@ -37,7 +35,7 @@ export const Map = () => {
         maxZoom={30}
         minZoom={5}
       />
-      <LocationMarkers />
+      <LocationMarker onChangeMarker={onChangeMarker} />
     </MapContainer>
   );
 };
