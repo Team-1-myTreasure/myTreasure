@@ -10,10 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@mantine/core": "^7.10.1",
+    "@mantine/form": "^7.10.1",
+    "@mantine/hooks": "^7.10.1",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@vitejs/plugin-react": "^4.2.1",
+    "axios": "^1.7.2",
+    "install": "^0.13.0",
     "leaflet": "^1.9.4",
+    "npm": "^10.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-leaflet": "^4.2.1",
