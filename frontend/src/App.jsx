@@ -10,6 +10,7 @@ import { ProblemDetail } from "./pages/ProblemDetail";
 import { ShareUrl } from "./pages/ShareUrl";
 import { SignupPage } from "./pages/SignupPage";
 import { SigninPage } from "./pages/SigninPage";
+import "./App.css";
 
 function App() {
   return (
