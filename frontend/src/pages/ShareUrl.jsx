@@ -32,7 +32,9 @@ const Copy = () => {
 };
 
 export const ShareUrl = () => {
-  //   const clipboard = useClipboard();
+  const uri = new URL(window.location.href);
+
+  console.log(uri.origin);
   return (
     <Container align="center" justify="center" fluid>
       <Text size="lg">
@@ -48,7 +50,10 @@ export const ShareUrl = () => {
         direction="row"
         wrap="wrap"
       >
-        <h4>コピーしてください</h4>
+        <Text fw={500} truncate="end">
+          {`${uri.origin}/gest`}
+        </Text>
+
         <Copy />
       </Flex>
     </Container>
