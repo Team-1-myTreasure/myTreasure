@@ -78,8 +78,6 @@ app.post("/api/gest/products/:productId", async (req, res) => {
   const { productId } = req.params;
   const { playerName } = req.body;
 
-  console.log(productId, playerName);
-
   const result = await db(
     db.raw("?? (??, ??, ??)", [
       "player",
