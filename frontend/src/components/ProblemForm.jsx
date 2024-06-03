@@ -1,4 +1,4 @@
-import { Button, Group, TextInput, Stack } from "@mantine/core";
+import { Button, Group, TextInput, Flex } from "@mantine/core";
 import { useForm } from "@mantine/form";
 
 export const ProblemForm = (props) => {
@@ -25,32 +25,36 @@ export const ProblemForm = (props) => {
         {...form.getInputProps("hint")}
       />
 
-      <Stack>
+      <TextInput
+        withAsterisk
+        label="この目的地に着いた時の表示される2択の問題を設定"
+        placeholder="問題文"
+        key={form.key("problem")}
+        {...form.getInputProps("problem")}
+      />
+      <Flex>
         <TextInput
           withAsterisk
-          label="この目的地に着いた時の表示される2択の問題を設定"
-          placeholder="問題文"
-          key={form.key("problem")}
-          {...form.getInputProps("problem")}
+          placeholder="正解を入力"
+          key={form.key("correctAnswer")}
+          {...form.getInputProps("correctAnswer")}
         />
-        <Group>
-          <TextInput
-            withAsterisk
-            placeholder="正解を入力"
-            key={form.key("correctAnswer")}
-            {...form.getInputProps("correctAnswer")}
-          />
-          <TextInput
-            withAsterisk
-            placeholder="不正解を入力"
-            key={form.key("incorrectAnswer")}
-            {...form.getInputProps("incorrectAnswer")}
-          />
-        </Group>
-      </Stack>
+        <TextInput
+          withAsterisk
+          placeholder="不正解を入力"
+          key={form.key("incorrectAnswer")}
+          {...form.getInputProps("incorrectAnswer")}
+        />
+      </Flex>
 
       <Group justify="flex-end" mt="md">
-        <Button type="submit" fullWidth variant="outline" color="indigo">
+        <Button
+          type="submit"
+          fullWidth
+          variant="outline"
+          color="white"
+          bg="indigo"
+        >
           問題設定を終了
         </Button>
       </Group>
