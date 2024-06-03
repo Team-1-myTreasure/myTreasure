@@ -65,8 +65,17 @@ app.get("/api/users/:userName/product", async (req, res) => {
 //---------------------------------------------------------
 
 app.post("/api/product", async (req, res) => {
-  const newProduct = req.body;
-  const productId = await db("product").insert(newProduct, ["product_id"]);
+  const { productName, hostName } = req.body;
+
+  const host = await db("host").first("id").where("name", hostName);
+
+  const productId = await db("product").insert(
+    {
+      host_id: host.id,
+      product_name: productName,
+    },
+    ["product_id"]
+  );
   res.send(productId);
 });
 
