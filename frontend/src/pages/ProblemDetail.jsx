@@ -2,11 +2,8 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Map } from "../components/Map";
-import { createContext } from "react";
 import { ProblemForm } from "../components/ProblemForm";
 import { Text } from "@mantine/core";
-
-export const locationContext = createContext();
 
 export const ProblemDetail = () => {
   // const location = useLocation();
@@ -18,7 +15,7 @@ export const ProblemDetail = () => {
   return (
     <>
       <div>
-        <Text>{`${problems.length + 1}問目に設定する目的地を選択`}</Text>
+        <Text>目的地を選択</Text>
         <Map onChangeMarker={(position) => setMarkerPosition(position)} />
       </div>
       <ProblemForm
