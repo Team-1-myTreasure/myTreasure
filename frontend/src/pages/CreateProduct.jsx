@@ -1,16 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export const CreateProduct = () => {
   const [title, setTitle] = useState("");
-  const [productId, setProductId] = useState();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (productId !== undefined) {
-      navigate("/host/problemdetail", { state: { productId: productId } });
-    }
-  }, [productId]);
 
   return (
     <>
@@ -32,7 +25,8 @@ export const CreateProduct = () => {
             body: JSON.stringify({ host_id: 1, product_name: title }),
           });
           const targetId = await res.json();
-          setProductId(targetId[0].product_id);
+          // TODO:本来は/host/{userName}/products/{productId}/problemdetail
+          navigate(`/host/products/${targetId[0].product_id}/problemdetail`);
           console.log("targetId: ", targetId[0].product_id);
         }}
       >

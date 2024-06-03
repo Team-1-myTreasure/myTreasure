@@ -10,6 +10,7 @@ import { ProblemDetail } from "./pages/ProblemDetail";
 import { ShareUrl } from "./pages/ShareUrl";
 import { SignupPage } from "./pages/SignupPage";
 import { SigninPage } from "./pages/SigninPage";
+import "./App.css";
 
 function App() {
   return (
@@ -17,12 +18,12 @@ function App() {
       <MantineProvider>
         <Routes>
           <Route path="host">
+            <Route path="products/:productId/problemdetail" element={<ProblemDetail />} />
+            <Route path="products/:productId/shareurl" element={<ShareUrl />} />
             <Route path="signupPage" element={<SignupPage />} />
             <Route path="signinPage" element={<SigninPage />} />
             <Route path=":userName/allproducts" element={<AllProducts />} />
             <Route path=":userName/createproduct" element={<CreateProduct />} />
-            <Route path="problemdetail" element={<ProblemDetail />} />
-            <Route path="shareurl" element={<ShareUrl />} />
           </Route>
           <Route path="gest" element={<Gest />} />
         </Routes>
