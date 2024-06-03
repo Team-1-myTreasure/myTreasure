@@ -19,9 +19,10 @@ export const CreateGest = () => {
     },
   });
   return (
-    <Stack gap={10} miw={120}>
+    <Stack justify="space-between" style={{ height: "90vh" }}>
       <Text>ユーザー名を入力してください</Text>
       <form
+        style={{ height: "50vh" }}
         onSubmit={form.onSubmit(async (values) => {
           try {
             const response = await axios.post(
@@ -42,20 +43,22 @@ export const CreateGest = () => {
           }
         })}
       >
-        <TextInput
-          withAsterisk
-          placeholder="ユーザー名"
-          key={form.key("userName")}
-          {...form.getInputProps("userName")}
-        />
-        {isDuplicateName && (
-          <Text size="md" c="red">
-            すでに存在しているユーザ名です
-          </Text>
-        )}
-        <Button type="submit" bg={"indigo"} fullWidth>
-          アカウント作成
-        </Button>
+        <Stack justify="space-between" style={{ height: "100%" }}>
+          <TextInput
+            withAsterisk
+            placeholder="ユーザー名"
+            key={form.key("userName")}
+            {...form.getInputProps("userName")}
+          />
+          {isDuplicateName && (
+            <Text size="md" c="red">
+              すでに存在しているユーザ名です
+            </Text>
+          )}
+          <Button type="submit" bg={"indigo"} fullWidth>
+            アカウント作成
+          </Button>
+        </Stack>
       </form>
     </Stack>
   );
