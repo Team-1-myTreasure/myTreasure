@@ -44,17 +44,20 @@ export const CreateGest = () => {
         })}
       >
         <Stack justify="space-between" style={{ height: "100%" }}>
-          <TextInput
-            withAsterisk
-            placeholder="ユーザー名"
-            key={form.key("userName")}
-            {...form.getInputProps("userName")}
-          />
-          {isDuplicateName && (
-            <Text size="md" c="red">
-              すでに存在しているユーザ名です
-            </Text>
-          )}
+          <Stack>
+            <TextInput
+              withAsterisk
+              placeholder="ユーザー名"
+              key={form.key("userName")}
+              {...form.getInputProps("userName")}
+            />
+            {isDuplicateName && (
+              <Text size="md" c="red">
+                すでに存在しているユーザ名です
+              </Text>
+            )}
+          </Stack>
+
           <Button type="submit" bg={"indigo"} fullWidth>
             アカウント作成
           </Button>
