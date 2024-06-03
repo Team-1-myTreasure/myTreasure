@@ -22,9 +22,11 @@ export const Signin = () => {
 
   const handleOnSubmit = async (values) => {
     try {
+      axios.defaults.withCredentials = true;
       const response = await axios.post("/api/signin", values);
       setIsPassIncorrect(false);
-      const userName = response.data;
+      console.log(response);
+      const userName = response.data["name"];
       return navigate(`/host/${userName}/allproducts`);
     } catch (error) {
       if (error.response.status === 401) {

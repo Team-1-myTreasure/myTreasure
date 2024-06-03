@@ -5,12 +5,22 @@ const passport = require("./db/config/passport");
 const bcrypt = require("bcrypt");
 const db = require("./db/config/knex");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
+const passportJwt = require("passport-jwt");
+
+const JwtStrategy = passportJwt.Strategy;
+const ExtractJwt = passportJwt.ExtractJwt;
 
 const PORT = process.env.PORT || 8080;
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:5173",
+  })
+);
 app.use(express.static(path.join(__dirname, "../frontend", "dist")));
 
 app.use(express.urlencoded({ extended: false }));
@@ -46,8 +56,17 @@ app.post(
   "/api/signin",
   passport.authenticate("local", { session: false }),
   (req, res) => {
-    const resData = req.user.name;
-    res.status(200).send(resData);
+    const token = jwt.sign(req.user, "secret");
+    console.log(typeof token);
+    const name = req.user.name;
+    res.cookie("token", token, {
+      sameSite: "none",
+      secure: true,
+      maxAge: 60 * 1000,
+      httpOnly: true,
+    });
+    // res.status(200).send({ name, token });
+    res.json({ token });
   }
 );
 
