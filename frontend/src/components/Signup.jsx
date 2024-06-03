@@ -25,9 +25,8 @@ export const Signup = () => {
     try {
       const response = await axios.post("/api/signup", values);
       setIsNameDuplicate(false);
-      const userId = response.data["id"];
-      //   return navigate(`/host/allproducts/${userId}`);
-      return navigate(`/host/allproducts/`);
+      const userName = response.data["name"];
+      return navigate(`/host/${userName}/allproducts/`);
     } catch (error) {
       console.log(error);
       if (error.response.status === 409) {
