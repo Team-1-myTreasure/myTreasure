@@ -50,7 +50,6 @@ app.post("/api/product", async (req, res) => {
 
 app.post("/api/problem", async (req, res) => {
   const newProblems = req.body;
-  console.log(newProblems);
   await db("problem").insert(newProblems);
   res.send("created");
 });
