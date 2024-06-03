@@ -24,7 +24,7 @@ export const Signin = () => {
     try {
       const response = await axios.post("/api/signin", values);
       setIsPassIncorrect(false);
-      const userName = response.data["name"];
+      const userName = response.data;
       return navigate(`/host/${userName}/allproducts`);
     } catch (error) {
       if (error.response.status === 401) {
