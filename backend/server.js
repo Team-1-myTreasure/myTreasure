@@ -53,8 +53,12 @@ app.post(
 
 //---------------------------------------------------------
 
-app.get("/product", async (req, res) => {
-  const allProduct = await db.select("*").from("product");
+app.get("/:userName/product", async (req, res) => {
+  const allProduct = await db
+    .select("product_id", "product_name")
+    .from("host")
+    .join("product", "host.id", "=", "product.host_id")
+    .where("name", "=", req.params.userName);
   res.send(allProduct);
 });
 
