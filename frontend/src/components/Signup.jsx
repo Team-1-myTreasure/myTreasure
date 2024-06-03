@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Text, Button, Group, TextInput } from "@mantine/core";
+import { Anchor, Stack, Text, Button, Group, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useState } from "react";
 
@@ -20,7 +20,6 @@ export const Signup = () => {
         value.length < 6 ? "パスワードは6文字以上で入力してください。" : null,
     },
   });
-  // 名前が重複してたらエラー出したい
   const handleOnSubmit = async (values) => {
     try {
       const response = await axios.post("/api/signup", values);
@@ -39,28 +38,47 @@ export const Signup = () => {
 
   return (
     <form onSubmit={form.onSubmit(handleOnSubmit)}>
-      <TextInput
-        withAsterisk
-        label="ユーザー名"
-        placeholder="ユーザー名を入力"
-        key={form.key("name")}
-        {...form.getInputProps("name")}
-      />
-      <Text c="white" bg="red">
-        {isNameDuplicate && "ユーザー名が重複しています"}
-      </Text>
+      <Stack gap="lg">
+        <Text
+          size="xl"
+          fw={900}
+          variant="gradient"
+          gradient={{ from: "blue", to: "cyan", deg: 90 }}
+        >
+          Welcome to my Treasure!
+        </Text>
 
-      <TextInput
-        withAsterisk
-        label="Password"
-        placeholder="パスワードを入力"
-        key={form.key("password")}
-        {...form.getInputProps("password")}
-      />
+        <TextInput
+          withAsterisk
+          label="ユーザー名"
+          size="md"
+          placeholder="ユーザー名を入力"
+          key={form.key("name")}
+          {...form.getInputProps("name")}
+        />
 
-      <Group justify="flex-end" mt="md">
-        <Button type="submit">Submit</Button>
-      </Group>
+        <TextInput
+          withAsterisk
+          label="Password"
+          size="md"
+          placeholder="パスワードを入力"
+          key={form.key("password")}
+          {...form.getInputProps("password")}
+        />
+
+        <Text c="white" bg="red">
+          {isNameDuplicate && "ユーザー名が重複しています"}
+        </Text>
+
+        <Group justify="flex-start" mt="md">
+          <Button type="submit" fullWidth size="lg" color="indigo">
+            サインアップ
+          </Button>
+          <Anchor href="/host/signinPage" underline="always">
+            サインイン画面へ
+          </Anchor>
+        </Group>
+      </Stack>
     </form>
   );
 };
