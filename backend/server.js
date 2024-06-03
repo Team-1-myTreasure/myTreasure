@@ -60,7 +60,7 @@ app.get("/product", async (req, res) => {
 
 //---------------------------------------------------------
 
-app.post("/product", async (req, res) => {
+app.post("/api/product", async (req, res) => {
   const newProduct = req.body;
   const productId = await db("product").insert(newProduct, ["product_id"]);
   res.send(productId);
@@ -72,6 +72,34 @@ app.post("/api/problem", async (req, res) => {
   const newProblems = req.body;
   await db("problem").insert(newProblems);
   res.send("created");
+});
+
+app.post("/api/gest/products/:productId", async (req, res) => {
+  const { productId } = req.params;
+  const { playerName } = req.body;
+
+  console.log(productId, playerName);
+
+  const result = await db(
+    db.raw("?? (??, ??, ??)", [
+      "player",
+      "product_id",
+      "player_name",
+      "progress_state",
+    ])
+  )
+    .insert(
+      db
+        .select(db.raw("?, ?, ?", [productId, playerName, 0]))
+        .whereNotExists(db("player").where("player_name", playerName))
+    )
+    .returning("*");
+
+  if (result.length === 0) {
+    res.status(409).send();
+    return;
+  }
+  res.status(201).send({ playerName: playerName });
 });
 
 //---------------------------------------------------------
