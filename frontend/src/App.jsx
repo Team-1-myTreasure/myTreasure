@@ -17,12 +17,12 @@ function App() {
       <MantineProvider>
         <Routes>
           <Route path="host">
-            <Route path="allproducts" element={<AllProducts />} />
-            <Route path="createproduct" element={<CreateProduct />} />
+            <Route path="signupPage:" element={<SignupPage />} />
+            <Route path="signinPage" element={<SigninPage />} />
+            <Route path=":userName/allproducts" element={<AllProducts />} />
+            <Route path=":userName/createproduct" element={<CreateProduct />} />
             <Route path="problemdetail" element={<ProblemDetail />} />
             <Route path="shareurl" element={<ShareUrl />} />
-            <Route path="signupPage" element={<SignupPage />} />
-            <Route path="signinPage" element={<SigninPage />} />
           </Route>
           <Route path="gest" element={<Gest />} />
         </Routes>

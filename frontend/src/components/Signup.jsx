@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Button, Group, TextInput } from "@mantine/core";
+import { Text, Button, Group, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import { useState } from "react";
 
 export const Signup = () => {
   const navigate = useNavigate();
+  const [isNameDuplicate, setIsNameDuplicate] = useState(false);
+
   const form = useForm({
     mode: "uncontrolled",
     initialValues: {
@@ -17,10 +20,21 @@ export const Signup = () => {
         value.length < 6 ? "パスワードは6文字以上で入力してください。" : null,
     },
   });
-
+  // 名前が重複してたらエラー出したい
   const handleOnSubmit = async (values) => {
-    await axios.post("/signup", values);
-    return navigate("/signin");
+    try {
+      const response = await axios.post("/api/signup", values);
+      setIsNameDuplicate(false);
+      const userName = response.data["name"];
+      return navigate(`/host/${userName}/allproducts/`);
+    } catch (error) {
+      console.log(error);
+      if (error.response.status === 409) {
+        setIsNameDuplicate(true);
+      } else {
+        console.log(error);
+      }
+    }
   };
 
   return (
@@ -32,6 +46,9 @@ export const Signup = () => {
         key={form.key("name")}
         {...form.getInputProps("name")}
       />
+      <Text c="white" bg="red">
+        {isNameDuplicate && "ユーザー名が重複しています"}
+      </Text>
 
       <TextInput
         withAsterisk
