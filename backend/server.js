@@ -53,7 +53,7 @@ app.post(
 
 //---------------------------------------------------------
 
-app.get("/users/:userName/product", async (req, res) => {
+app.get("/api/users/:userName/product", async (req, res) => {
   const allProduct = await db
     .select("product_id", "product_name")
     .from("host")
