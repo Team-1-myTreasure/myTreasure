@@ -13,7 +13,7 @@ export const SelectProducts = (props) => {
   };
 
   const { data, error, isLoading } = useSWR(
-    `/${userName}/product`,
+    `/users/${userName}/product`,
     productsInit
   );
 
