@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Map } from "../components/Map";
 import { createContext } from "react";
 import { ProblemForm } from "../components/ProblemForm";
+import { Text } from "@mantine/core";
 
 export const locationContext = createContext();
 
@@ -16,9 +17,8 @@ export const ProblemDetail = () => {
   const [markerPosition, setMarkerPosition] = useState([]);
   return (
     <>
-      <div>{problems.length + 1}</div>
       <div>
-        <p>目的地を選択</p>
+        <Text>{`${problems.length + 1}問目に設定する目的地を選択`}</Text>
         <Map onChangeMarker={(position) => setMarkerPosition(position)} />
       </div>
       <ProblemForm
@@ -41,7 +41,9 @@ export const ProblemDetail = () => {
             },
             body: JSON.stringify(problem),
           });
-          navigate(`/host/products/${productId}/shareurl`, { replace: true });
+          navigate(`/host/products/${productId}/shareurl`, {
+            replace: true,
+          });
         }}
       />
     </>
