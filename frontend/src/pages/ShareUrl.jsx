@@ -7,11 +7,12 @@ import {
   Flex,
   Container,
 } from "@mantine/core";
+import { useParams } from "react-router-dom";
 import { FaCheck, FaCopy } from "react-icons/fa";
 
-const Copy = () => {
+const Copy = ({url}) => {
   return (
-    <CopyButton value="コピーしたURLです。" timeout={2000}>
+    <CopyButton value={url} timeout={2000}>
       {({ copied, copy }) => (
         <Tooltip label={copied ? "Copied" : "Copy"} withArrow position="right">
           <ActionIcon
@@ -32,9 +33,9 @@ const Copy = () => {
 };
 
 export const ShareUrl = () => {
+  const {productId} = useParams();
   const uri = new URL(window.location.href);
 
-  console.log(uri.origin);
   return (
     <Container align="center" justify="center" fluid>
       <Text size="lg">
@@ -51,10 +52,10 @@ export const ShareUrl = () => {
         wrap="wrap"
       >
         <Text fw={500} truncate="end">
-          {`${uri.origin}/gest`}
+          {`${uri.origin}/gest/products/${productId}`}
         </Text>
 
-        <Copy />
+        <Copy url={`${uri.origin}/gest/products/${productId}`} />
       </Flex>
     </Container>
   );

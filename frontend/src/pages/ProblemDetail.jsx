@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { useLocation } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { Map } from "../components/Map";
 import { createContext } from "react";
@@ -8,8 +8,10 @@ import { ProblemForm } from "../components/ProblemForm";
 export const locationContext = createContext();
 
 export const ProblemDetail = () => {
-  const location = useLocation();
-  const productId = location.state.productId;
+  // const location = useLocation();
+  // const productId = location.state.productId;
+  const navigate = useNavigate();
+  const { productId } = useParams();
   const [problems, setProblems] = useState([]);
   const [markerPosition, setMarkerPosition] = useState([]);
   return (
@@ -39,6 +41,7 @@ export const ProblemDetail = () => {
             },
             body: JSON.stringify(problem),
           });
+          navigate(`/host/products/${productId}/shareurl`, { replace: true });
         }}
       />
     </>

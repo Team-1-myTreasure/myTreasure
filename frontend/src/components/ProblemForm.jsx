@@ -1,11 +1,8 @@
 import { Button, Group, TextInput, Stack } from "@mantine/core";
 import { useForm } from "@mantine/form";
-import { useNavigate } from "react-router-dom";
-
 
 export const ProblemForm = (props) => {
   const { onSubmit } = props;
-  const navigate = useNavigate();
   const form = useForm({
     mode: "uncontrolled",
     initialValues: {
@@ -53,7 +50,7 @@ export const ProblemForm = (props) => {
       </Stack>
 
       <Group justify="flex-end" mt="md">
-        <Button type="submit" fullWidth variant="outline" color="indigo" onClick={() => navigate("/host/shareurl")}>
+        <Button type="submit" fullWidth variant="outline" color="indigo">
           問題設定を終了
         </Button>
       </Group>
