@@ -36,7 +36,16 @@ export const Signin = () => {
   };
   return (
     <form onSubmit={form.onSubmit(handleOnSubmit)}>
-      <Stack gap="lg" p="20px">
+      <Stack gap="lg">
+        <Text
+          size="xl"
+          fw={900}
+          variant="gradient"
+          gradient={{ from: "blue", to: "cyan", deg: 90 }}
+        >
+          Welcome to my Treasure!
+        </Text>
+
         <TextInput
           withAsterisk
           label="ユーザー名"
@@ -60,7 +69,7 @@ export const Signin = () => {
 
         <Group justify="flex-start" mt="md">
           <Button type="submit" fullWidth size="lg" color="indigo">
-            ログイン
+            サインイン
           </Button>
           <Anchor href="/host/signupPage" underline="always">
             アカウントの新規作成
