@@ -1,45 +1,69 @@
 import axios from "axios";
 import useSWR from "swr";
 import { Stack, Button } from "@mantine/core";
-import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export const SelectProducts = (props) => {
-  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const { userName } = props;
 
   const productsInit = async (url) => {
     const response = await axios.get(url);
-    return response.data.map((product) => product.product_name);
+    return response;
   };
 
-  const { data, error } = useSWR(
-    `http://localhost:8080/${userName}/product`,
+  const { data, error, isLoading } = useSWR(
+    `/${userName}/product`,
     productsInit
   );
 
-  useEffect(() => {
-    data ? setProducts(data) : null;
-  }, [data]);
-
-  // if (isLoading) return <h2>ok</h2>;
+  if (isLoading) return <div>loading...</div>;
 
   if (error) {
     return <div>サーバーエラー</div>;
   } else {
     return (
       <>
-        <Stack>
-          {products.map((product, index) => (
-            <Button variant="default" key={index} disabled={true}>
-              {product}
-            </Button>
-          ))}
-          <Button onClick={() => navigate(`/host/${userName}/createproduct/`)}>
+        <div
+          style={{
+            position: "absolute",
+            top: "150px",
+            width: "80%",
+            left: "10%",
+            overflow: "scroll",
+          }}
+        >
+          <Stack>
+            {data.data.map((product, index) => (
+              <Button variant="default" key={index} disabled={true}>
+                {product.product_name}
+              </Button>
+            ))}
+          </Stack>
+          <Button
+            color="indigo"
+            onClick={() => navigate(`/host/${userName}/createproduct/`)}
+            style={{
+              position: "fixed",
+              bottom: "10px",
+              width: "80%",
+              left: "10%",
+              zIndex: "9",
+            }}
+          >
             + 新しいゲーム
           </Button>
-        </Stack>
+          <div
+            style={{
+              height: "20px",
+              position: "fixed",
+              bottom: "0px",
+              width: "80%",
+              background: "white",
+              zIndex: "8",
+            }}
+          ></div>
+        </div>
       </>
     );
   }
