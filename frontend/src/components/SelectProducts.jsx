@@ -1,23 +1,70 @@
-import { useState, useEffect } from "react";
+import axios from "axios";
+import useSWR from "swr";
+import { Stack, Button } from "@mantine/core";
 import { useNavigate } from "react-router-dom";
 
-export const SelectProducts = () => {
-  const [products, setProducts] = useState([]);
+export const SelectProducts = (props) => {
   const navigate = useNavigate();
+  const { userName } = props;
 
-  useEffect(() => {
-    setProducts([{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }]);
-  }, []);
+  const productsInit = async (url) => {
+    const response = await axios.get(url);
+    return response;
+  };
 
-  return (
-    <>
-      <div>
-        <button onClick={() => navigate("/host/createproduct")}>+</button>
-        <p>新しいゲーム</p>
-      </div>
-      {products.map((elem, index) => (
-        <div key={index}>{elem.id}</div>
-      ))}
-    </>
+  const { data, error, isLoading } = useSWR(
+    `/users/${userName}/product`,
+    productsInit
   );
+
+  if (isLoading) return <div>loading...</div>;
+
+  if (error) {
+    return <div>サーバーエラー</div>;
+  } else {
+    return (
+      <>
+        <div
+          style={{
+            position: "absolute",
+            top: "150px",
+            width: "80%",
+            left: "10%",
+            overflow: "scroll",
+          }}
+        >
+          <Stack>
+            {data.data.map((product, index) => (
+              <Button variant="default" key={index} disabled={true}>
+                {product.product_name}
+              </Button>
+            ))}
+          </Stack>
+          <Button
+            color="indigo"
+            onClick={() => navigate(`/host/${userName}/createproduct/`)}
+            style={{
+              position: "fixed",
+              bottom: "10px",
+              width: "80%",
+              left: "10%",
+              zIndex: "9",
+            }}
+          >
+            + 新しいゲーム
+          </Button>
+          <div
+            style={{
+              height: "20px",
+              position: "fixed",
+              bottom: "0px",
+              width: "80%",
+              background: "white",
+              zIndex: "8",
+            }}
+          ></div>
+        </div>
+      </>
+    );
+  }
 };
