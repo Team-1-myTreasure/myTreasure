@@ -22,9 +22,10 @@ export const Signin = () => {
 
   const handleOnSubmit = async (values) => {
     try {
-      await axios.post("/signin", values);
+      const response = await axios.post("/api/signin", values);
       setIsPassIncorrect(false);
-      return navigate("/host/allproducts");
+      const userName = response.data["name"];
+      return navigate(`/host/${userName}/allproducts`);
     } catch (error) {
       if (error.response.status === 401) {
         setIsPassIncorrect(true);
