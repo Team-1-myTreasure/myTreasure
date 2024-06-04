@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { latLng } from "leaflet";
+import L, { latLng } from "leaflet";
 import {
   MapContainer,
   TileLayer,
@@ -10,6 +10,13 @@ import {
 import "leaflet/dist/leaflet.css";
 import "./map.css";
 import { useState } from "react";
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: "/marker-icon-2x.png",
+  iconUrl: "/marker-icon.png",
+  shadowUrl: "/marker-shadow.png",
+});
 
 const LocationMarker = ({ onChangeMarker }) => {
   const [position, setPosition] = useState(null);
