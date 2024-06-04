@@ -72,47 +72,56 @@ app.post(
 
 //---------------------------------------------------------
 
-app.get("/api/users/:userName/product", async (req, res) => {
+app.get(
+  "/api/users/:userName/product",
   passport.authenticate("jwt", {
     session: false,
-  });
-  const allProduct = await db
-    .select("product_id", "product_name")
-    .from("host")
-    .join("product", "host.id", "=", "product.host_id")
-    .where("name", "=", req.params.userName);
-  res.send(allProduct);
-});
+  }),
+  async (req, res) => {
+    const allProduct = await db
+      .select("product_id", "product_name")
+      .from("host")
+      .join("product", "host.id", "=", "product.host_id")
+      .where("name", "=", req.params.userName);
+    res.send(allProduct);
+  }
+);
 
 //---------------------------------------------------------
 
-app.post("/api/product", async (req, res) => {
+app.post(
+  "/api/product",
   passport.authenticate("jwt", {
     session: false,
-  });
-  const { productName, hostName } = req.body;
-  const host = await db("host").first("id").where("name", hostName);
+  }),
+  async (req, res) => {
+    const { productName, hostName } = req.body;
+    const host = await db("host").first("id").where("name", hostName);
 
-  const productId = await db("product").insert(
-    {
-      host_id: host.id,
-      product_name: productName,
-    },
-    ["product_id"]
-  );
-  res.send(productId);
-});
+    const productId = await db("product").insert(
+      {
+        host_id: host.id,
+        product_name: productName,
+      },
+      ["product_id"]
+    );
+    res.send(productId);
+  }
+);
 
 //---------------------------------------------------------
 
-app.post("/api/problem", async (req, res) => {
+app.post(
+  "/api/problem",
   passport.authenticate("jwt", {
     session: false,
-  });
-  const newProblems = req.body;
-  await db("problem").insert(newProblems);
-  res.send("created");
-});
+  }),
+  async (req, res) => {
+    const newProblems = req.body;
+    await db("problem").insert(newProblems);
+    res.send("created");
+  }
+);
 
 app.post("/api/gest/products/:productId", async (req, res) => {
   const { productId } = req.params;
