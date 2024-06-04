@@ -20,8 +20,8 @@
 
 ### スクリーンショット:
 
-![画面1](./docs//問題設定.png)
-![画面2](./docs//目的地着.png)
+<img src="./docs//問題設定.png" width="300px">
+<img src="./docs//目的地着.png" width="300px">
 
 ## 2. 技術スタック
 
