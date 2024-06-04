@@ -5,15 +5,27 @@ const passport = require("./db/config/passport");
 const bcrypt = require("bcrypt");
 const db = require("./db/config/knex");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
+const cookieParser = require("cookie-parser");
 
 const PORT = process.env.PORT || 8080;
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: "http://localhost:3000",
+  })
+);
 app.use(express.static(path.join(__dirname, "../frontend", "dist")));
-
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+app.use(passport.initialize());
+passport.authenticate("jwt", {
+  session: false,
+});
 
 //---------------------------------------------------------
 
@@ -46,14 +58,24 @@ app.post(
   "/api/signin",
   passport.authenticate("local", { session: false }),
   (req, res) => {
-    const resData = req.user.name;
-    res.status(200).send(resData);
+    const token = jwt.sign(req.user, "secret");
+    const name = req.user.name;
+    res.cookie("token", token, {
+      sameSite: "none",
+      secure: true,
+      maxAge: 60 * 5000,
+      httpOnly: true,
+    });
+    res.status(200).send({ name });
   }
 );
 
 //---------------------------------------------------------
 
 app.get("/api/users/:userName/product", async (req, res) => {
+  passport.authenticate("jwt", {
+    session: false,
+  });
   const allProduct = await db
     .select("product_id", "product_name")
     .from("host")
@@ -65,8 +87,10 @@ app.get("/api/users/:userName/product", async (req, res) => {
 //---------------------------------------------------------
 
 app.post("/api/product", async (req, res) => {
+  passport.authenticate("jwt", {
+    session: false,
+  });
   const { productName, hostName } = req.body;
-
   const host = await db("host").first("id").where("name", hostName);
 
   const productId = await db("product").insert(
@@ -82,6 +106,9 @@ app.post("/api/product", async (req, res) => {
 //---------------------------------------------------------
 
 app.post("/api/problem", async (req, res) => {
+  passport.authenticate("jwt", {
+    session: false,
+  });
   const newProblems = req.body;
   await db("problem").insert(newProblems);
   res.send("created");

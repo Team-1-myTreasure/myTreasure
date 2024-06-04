@@ -7,6 +7,7 @@ import { useState } from "react";
 export const Signin = () => {
   const navigate = useNavigate();
   const [isPassIncorrect, setIsPassIncorrect] = useState(false);
+  axios.defaults.withCredentials = true;
 
   const form = useForm({
     initialValues: {
@@ -24,7 +25,7 @@ export const Signin = () => {
     try {
       const response = await axios.post("/api/signin", values);
       setIsPassIncorrect(false);
-      const userName = response.data;
+      const userName = response.data["name"];
       return navigate(`/host/${userName}/allproducts`);
     } catch (error) {
       if (error.response.status === 401) {

@@ -5,6 +5,8 @@ const bcrypt = require("bcrypt");
 
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const passportJwt = require("passport-jwt");
+const JwtStrategy = passportJwt.Strategy;
 
 passport.use(
   new LocalStrategy(
@@ -28,6 +30,23 @@ passport.use(
       }
     }
   )
+);
+
+const opts = {
+  jwtFromRequest: function (req) {
+    let token = null;
+    if (req && req.cookies) {
+      token = req.cookies["token"];
+    }
+    return token;
+  },
+  secretOrKey: "secret",
+};
+
+passport.use(
+  new JwtStrategy(opts, (jwt_payload, done) => {
+    done(null, jwt_payload);
+  })
 );
 
 module.exports = passport;
