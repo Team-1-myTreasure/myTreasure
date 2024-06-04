@@ -33,7 +33,6 @@ passport.use(
 );
 
 const opts = {
-  // jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
   jwtFromRequest: function (req) {
     let token = null;
     if (req && req.cookies) {
