@@ -58,50 +58,52 @@ export const Destination = () => {
     <>
       <Text size="xl">目的地へ向かう</Text>
       {data && (
-        <MapContainer center={position} zoom={zoom}>
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-            url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-            maxZoom={30}
-            minZoom={5}
-          />
-          <LocationMarker
-            centerLat={data.latitude}
-            centerLng={data.longtitude}
-            radius={50}
-            onEnterCircle={() => setTouchCircleBoolean(true)}
-          />
-          <Circle
-            center={latLng([data.latitude, data.longtitude])}
-            radius={500}
-          />
-        </MapContainer>
-      )}
-      {touchCircleBoolean === false ? (
-        <Card shadow="sm" padding="lg" radius="md" withBorder>
-          <Text size="md" td="underline">
-            目的地へのヒント
-          </Text>
-          <Text size="md">ヒントの内容です。</Text>
-        </Card>
-      ) : (
-        <Card shadow="sm" padding="lg" radius="md" withBorder>
-          <Text>おめでとうございます！！</Text>
-          <Text>目的地に到着しました</Text>
-          <Button
-            variant="filled"
-            onClick={() =>
-              navigate(
-                `/gest/products/${productId}/user/${userName}/question`,
-                {
-                  replace: true,
+        <>
+          <MapContainer center={position} zoom={zoom}>
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+              url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+              maxZoom={30}
+              minZoom={5}
+            />
+            <LocationMarker
+              centerLat={data.latitude}
+              centerLng={data.longtitude}
+              radius={50}
+              onEnterCircle={() => setTouchCircleBoolean(true)}
+            />
+            <Circle
+              center={latLng([data.latitude, data.longtitude])}
+              radius={500}
+            />
+          </MapContainer>
+          {touchCircleBoolean === false ? (
+            <Card shadow="sm" padding="lg" radius="md" withBorder>
+              <Text size="md" td="underline">
+                目的地へのヒント
+              </Text>
+              <Text size="md">{data.hint}</Text>
+            </Card>
+          ) : (
+            <Card shadow="sm" padding="lg" radius="md" withBorder>
+              <Text>おめでとうございます！！</Text>
+              <Text>目的地に到着しました</Text>
+              <Button
+                variant="filled"
+                onClick={() =>
+                  navigate(
+                    `/gest/products/${productId}/user/${userName}/question`,
+                    {
+                      replace: true,
+                    }
+                  )
                 }
-              )
-            }
-          >
-            問題へ。
-          </Button>
-        </Card>
+              >
+                問題へ。
+              </Button>
+            </Card>
+          )}
+        </>
       )}
     </>
   );

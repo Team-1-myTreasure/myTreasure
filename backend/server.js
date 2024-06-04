@@ -163,6 +163,9 @@ app.get("/api/products/:productId", async (req, res) => {
     latitude: result.distination_latitude,
     longtitude: result.distination_longtitude,
     hint: result.next_distination_hint,
+    question: result.question,
+    correctAnswer: result.correct_answer,
+    incorrectAnswer: result.incorrect_answer,
   });
 });
 
