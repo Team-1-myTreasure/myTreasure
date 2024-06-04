@@ -7,6 +7,7 @@ import { useState } from "react";
 export const Signin = () => {
   const navigate = useNavigate();
   const [isPassIncorrect, setIsPassIncorrect] = useState(false);
+  axios.defaults.withCredentials = true;
 
   const form = useForm({
     initialValues: {
@@ -22,7 +23,6 @@ export const Signin = () => {
 
   const handleOnSubmit = async (values) => {
     try {
-      axios.defaults.withCredentials = true;
       const response = await axios.post("/api/signin", values);
       setIsPassIncorrect(false);
       console.log(response);
