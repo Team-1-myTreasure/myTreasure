@@ -10,6 +10,8 @@ import { ProblemDetail } from "./pages/ProblemDetail";
 import { ShareUrl } from "./pages/ShareUrl";
 import { SignupPage } from "./pages/SignupPage";
 import { SigninPage } from "./pages/SigninPage";
+import { Destination } from "./pages/Destination";
+import { GestQuestion } from "./pages/GestQuestion";
 import "./App.css";
 
 function App() {
@@ -32,7 +34,11 @@ function App() {
             <Route path="products/:productId" element={<CreateGest />} />
             <Route
               path="products/:productId/user/:userName/goToDestination"
-              element={<h1>目的地に向かうよー</h1>}
+              element={<Destination />}
+            />
+            <Route
+              path="products/:productId/user/:userName/question"
+              element={<GestQuestion />}
             />
           </Route>
         </Routes>

@@ -113,6 +113,23 @@ app.post("/api/gest/products/:productId", async (req, res) => {
   res.status(201).send({ playerName: playerName });
 });
 
+app.get("/api/products/:productId", async (req, res) => {
+  const productId = req.params.productId;
+
+  const result = await db("product")
+    .first()
+    .join("problem", "product.product_id", "=", "problem.product_id")
+    .where("product.product_id", productId);
+
+  console.log(result);
+
+  res.send({
+    latitude: result.distination_latitude,
+    longtitude: result.distination_longtitude,
+    hint: result.next_distination_hint,
+  });
+});
+
 //---------------------------------------------------------
 app.use((req, res, next) => {
   res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
