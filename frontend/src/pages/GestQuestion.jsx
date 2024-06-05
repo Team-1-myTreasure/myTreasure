@@ -27,20 +27,36 @@ export const GestQuestion = () => {
           {Math.floor(Math.random() * 101) % 2 === 0 ? (
             <>
               {" "}
-              <Button variant="filled" onClick={() => setCorrect(true)}>
+              <Button
+                variant="filled"
+                color="#00492B"
+                onClick={() => setCorrect(true)}
+              >
                 {data.correctAnswer}
               </Button>
-              <Button variant="light" onClick={() => setCorrect(false)}>
+              <Button
+                variant="light"
+                color="#00492B"
+                onClick={() => setCorrect(false)}
+              >
                 {data.incorrectAnswer}
               </Button>
             </>
           ) : (
             <>
               {" "}
-              <Button variant="filled" onClick={() => setCorrect(false)}>
+              <Button
+                variant="filled"
+                color="#00492B"
+                onClick={() => setCorrect(false)}
+              >
                 {data.incorrectAnswer}
               </Button>
-              <Button variant="light" onClick={() => setCorrect(true)}>
+              <Button
+                variant="light"
+                color="#00492B"
+                onClick={() => setCorrect(true)}
+              >
                 {data.correctAnswer}
               </Button>
             </>

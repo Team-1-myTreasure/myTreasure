@@ -75,6 +75,8 @@ export const Destination = () => {
             <Circle
               center={latLng([data.latitude, data.longtitude])}
               radius={500}
+              fillColor="#00492B"
+              color="#00492B"
             />
           </MapContainer>
           {touchCircleBoolean === false ? (
@@ -89,6 +91,7 @@ export const Destination = () => {
               <Text>おめでとうございます！！</Text>
               <Text>目的地に到着しました</Text>
               <Button
+                color="#00492B"
                 variant="filled"
                 onClick={() =>
                   navigate(

@@ -48,13 +48,7 @@ export const ProblemForm = (props) => {
       </Flex>
 
       <Group justify="flex-end" mt="md">
-        <Button
-          type="submit"
-          fullWidth
-          variant="outline"
-          color="white"
-          bg="indigo"
-        >
+        <Button type="submit" fullWidth color="#00492B">
           問題設定を終了
         </Button>
       </Group>
