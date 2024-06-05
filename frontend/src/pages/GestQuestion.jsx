@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Card, Text, Button } from "@mantine/core";
 import { useParams } from "react-router-dom";
 import useSWR from "swr";
@@ -8,18 +8,9 @@ import Confetti from "react-confetti";
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
-const QuestionResult = ({ correct, setImpetus }) => {
+const QuestionResult = ({ correct }) => {
   return (
-    <>
-      {correct === true ? (
-        <>
-          {useEffect(() => setImpetus(1), [])}
-          <Text>正解です</Text>
-        </>
-      ) : (
-        <Text>不正解です</Text>
-      )}
-    </>
+    <>{correct === true ? <Text>正解です</Text> : <Text>不正解です</Text>}</>
   );
 };
 
@@ -48,7 +39,10 @@ export const GestQuestion = () => {
                 <Button
                   variant="filled"
                   color="#00492B"
-                  onClick={() => setCorrect(true)}
+                  onClick={() => {
+                    setImpetus(1);
+                    setCorrect(true);
+                  }}
                 >
                   {data.correctAnswer}
                 </Button>
@@ -73,7 +67,10 @@ export const GestQuestion = () => {
                 <Button
                   variant="light"
                   color="#00492B"
-                  onClick={() => setCorrect(true)}
+                  onClick={() => {
+                    setImpetus(1);
+                    setCorrect(true);
+                  }}
                 >
                   {data.correctAnswer}
                 </Button>
