@@ -16,7 +16,7 @@ const Copy = ({url}) => {
       {({ copied, copy }) => (
         <Tooltip label={copied ? "Copied" : "Copy"} withArrow position="right">
           <ActionIcon
-            color={copied ? "indigo" : "gray"}
+            color={copied ? "#00492B": "gray"}
             variant="subtle"
             onClick={copy}
           >

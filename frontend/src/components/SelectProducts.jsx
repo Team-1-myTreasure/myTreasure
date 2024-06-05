@@ -41,7 +41,7 @@ export const SelectProducts = (props) => {
             ))}
           </Stack>
           <Button
-            color="indigo"
+            color="#00492B"
             onClick={() => navigate(`/host/${userName}/createproduct/`)}
             style={{
               position: "fixed",

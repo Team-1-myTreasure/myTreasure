@@ -29,7 +29,7 @@ export const CreateProduct = () => {
         >
           <Button
             fullWidth
-            color="indigo"
+            color="#00492B"
             variant="filled"
             onClick={async () => {
               const res = await fetch("/api/product", {
@@ -53,7 +53,7 @@ export const CreateProduct = () => {
           >
             ゲームを作る
           </Button>
-          <Button fullWidth variant="default" radius="md">
+          <Button fullWidth variant="default" radius="md" color="#00492B">
             <Link to={`/host/${userName}/allproducts`}>キャンセル</Link>
           </Button>
         </Stack>

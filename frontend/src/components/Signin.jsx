@@ -1,6 +1,14 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Anchor, Text, Stack, Button, Group, TextInput, PasswordInput } from "@mantine/core";
+import {
+  Anchor,
+  Text,
+  Stack,
+  Button,
+  Group,
+  TextInput,
+  PasswordInput,
+} from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useState } from "react";
 
@@ -42,7 +50,7 @@ export const Signin = () => {
           size="xl"
           fw={900}
           variant="gradient"
-          gradient={{ from: "blue", to: "cyan", deg: 90 }}
+          gradient={{ from: "#00492B", to: "green", deg: 90 }}
         >
           Welcome to my Treasure!
         </Text>
@@ -69,7 +77,7 @@ export const Signin = () => {
         </Text>
 
         <Group justify="flex-start" mt="md">
-          <Button type="submit" fullWidth size="lg" color="indigo">
+          <Button type="submit" fullWidth size="lg" color="#00492B">
             サインイン
           </Button>
           <Anchor href="/host/signupPage" underline="always">

@@ -58,7 +58,7 @@ export const CreateGest = () => {
             )}
           </Stack>
 
-          <Button type="submit" bg={"indigo"} fullWidth>
+          <Button type="submit" color="#00492B" fullWidth>
             アカウント作成
           </Button>
         </Stack>
