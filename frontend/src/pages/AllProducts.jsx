@@ -15,6 +15,7 @@ export const AllProducts = () => {
           zIndex: "10",
           background: "white",
           width: "100%",
+          backgroundColor: "#eaebc4",
         }}
       >
         ゲーム一覧
