@@ -7,7 +7,10 @@ import useSWR from "swr";
 import { useParams, useNavigate } from "react-router-dom";
 import "./Destination.css";
 import { isPointInCircle } from "../utils/circle";
-import { Card, Text, Button } from "@mantine/core";
+import { Card, Text, Button, Flex } from "@mantine/core";
+import Lottie from "react-lottie";
+import walk from "../assets/walk.json";
+import walk2 from "../assets/walk2.json";
 
 const currentLocation = L.divIcon({ className: "beacon" });
 
@@ -56,6 +59,24 @@ export const Destination = () => {
   const zoom = 12;
   return (
     <>
+      <Flex>
+        {[...Array(5).keys()].map((i) => (
+          <Lottie
+            key={i}
+            options={{
+              loop: true,
+              autoplay: true,
+              animationData: walk,
+              rendererSettings: {
+                preserveAspectRatio: "xMidYMid slice",
+              },
+            }}
+            height={60}
+            width={40}
+            isClickToPauseDisabled={true}
+          />
+        ))}
+      </Flex>{" "}
       <Text size="xl">目的地へ向かう</Text>
       {data && (
         <>
@@ -105,6 +126,24 @@ export const Destination = () => {
           )}
         </>
       )}
+      <Flex>
+        {[...Array(5).keys()].map((i) => (
+          <Lottie
+            key={i}
+            options={{
+              loop: true,
+              autoplay: true,
+              animationData: walk2,
+              rendererSettings: {
+                preserveAspectRatio: "xMidYMid slice",
+              },
+            }}
+            height={60}
+            width={40}
+            isClickToPauseDisabled={true}
+          />
+        ))}
+      </Flex>{" "}
     </>
   );
 };
