@@ -59,7 +59,7 @@ export const SelectProducts = (props) => {
               position: "fixed",
               bottom: "0px",
               width: "80%",
-              background: "white",
+              background: "#eaebc4",
               zIndex: "8",
             }}
           ></div>

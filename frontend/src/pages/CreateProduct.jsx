@@ -7,9 +7,9 @@ export const CreateProduct = () => {
   const navigate = useNavigate();
   const { userName } = useParams();
   return (
-    <div style={{ height: "90vh" }}>
+    <div style={{ height: "90vh", backgroundColor: "#eaebc4" }}>
       <Stack
-        bg="var(--mantine-color-body)"
+        bg="#eaebc4"
         justify="space-between"
         style={{ width: "100%", height: "100%" }}
       >
@@ -21,12 +21,7 @@ export const CreateProduct = () => {
             setTitle(e.target.value);
           }}
         />
-        <Stack
-          bg="var(--mantine-color-body)"
-          align="stretch"
-          justify="center"
-          gap="md"
-        >
+        <Stack bg="eaebc4" align="stretch" justify="center" gap="md">
           <Button
             fullWidth
             color="#00492B"
