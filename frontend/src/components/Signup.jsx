@@ -1,6 +1,14 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Anchor, Stack, Text, Button, Group, TextInput } from "@mantine/core";
+import {
+  Anchor,
+  Stack,
+  Text,
+  Button,
+  Group,
+  TextInput,
+  PasswordInput,
+} from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useState } from "react";
 
@@ -57,7 +65,7 @@ export const Signup = () => {
           {...form.getInputProps("name")}
         />
 
-        <TextInput
+        <PasswordInput
           withAsterisk
           label="Password"
           size="md"
